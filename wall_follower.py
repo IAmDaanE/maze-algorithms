@@ -1,0 +1,142 @@
+import pygame
+import random
+import json
+
+WINDOW_WIDTH = 603
+WINDOW_HEIGHT = 604
+
+pygame.init()
+screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+pygame.display.set_caption("Wall Follower")
+clock = pygame.time.Clock()
+
+maze_color = (0,255,0)
+snake_color = (0,85,0)
+snake_complete_color = (100,0,0)
+background_color = (0,0,0)
+head_color = (255,255,255)
+running = True
+complete = False
+
+rows = 30
+columns = 30
+walls_left = []
+walls_top = []
+moved = False
+
+moves = []
+direction_library = {"right": ["top", "right", "bottom", "left"],
+                     "bottom": ["right", "bottom", "left", "top"],
+                     "left": ["bottom", "left", "top", "right"],
+                     "top": ["left", "top", "right", "bottom"]}
+direction = "right"
+moves = direction_library[direction]
+
+current_snake = []
+current_cell = [0,0]
+current_snake.append(current_cell)
+
+def can_go_top(row, column):
+    if row == 0:
+        return False
+    elif walls_top[row][column]:
+        return False
+    else:
+        return True
+
+def can_go_bottom(row, column):
+    if row == 29:
+        return False
+    elif walls_top[row + 1][column]:
+        return False
+    else:
+        return True
+    
+def can_go_left(row, column):
+    if column == 0:
+        return False
+    elif walls_left[row][column]:
+        return False
+    else:
+        return True
+
+def can_go_right(row, column):
+    if column == 29:
+        return False
+    elif walls_left[row][column + 1]:
+        return False
+    else:
+        return True
+
+with open("maze.json", "r") as f:
+    raw_unloaded_data = json.load(f)
+    walls_left = raw_unloaded_data["left_walls"]
+    walls_top = raw_unloaded_data["top_walls"]
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    #---------------------------
+
+    if not complete:
+        moved = False
+        for move in moves:
+            if move == "top":
+                if can_go_top(current_cell[0], current_cell[1]):
+                    current_cell[0] -= 1
+                    current_snake.append(current_cell[:])
+                    direction = "top"
+                    moved = True
+            elif move == "right":
+                if can_go_right(current_cell[0], current_cell[1]):
+                    current_cell[1] += 1
+                    current_snake.append(current_cell[:])
+                    direction = "right"
+                    moved = True
+            elif move == "bottom":
+                if can_go_bottom(current_cell[0], current_cell[1]):
+                    current_cell[0] += 1
+                    current_snake.append(current_cell[:])
+                    direction = "bottom"
+                    moved = True
+            elif move == "left":
+                if can_go_left(current_cell[0], current_cell[1]):
+                    current_cell[1] -= 1
+                    current_snake.append(current_cell[:])
+                    direction = "left"
+                    moved = True
+            if moved:
+                break
+
+        moves = direction_library[direction]
+        if current_cell == [29, 29]:
+            complete = True
+
+    #---------------------------
+    screen.fill((0,0,0))
+    
+    if len(current_snake) > 0:
+        if not complete:
+            for row, column in current_snake:
+                pygame.draw.rect(screen, snake_color, (column * 20, row * 20, 20, 20))
+            pygame.draw.rect(screen, snake_color, (1,1,20,20))
+            pygame.draw.rect(screen, head_color, (current_cell[1] * 20, current_cell[0] * 20, 20, 20))
+        else:
+            for row, column in current_snake:
+                pygame.draw.rect(screen, snake_complete_color, (column * 20, row * 20, 20, 20))
+            pygame.draw.rect(screen, snake_complete_color, (1,1,20,20))
+    
+    for row in range(30):
+        for column in range(30):
+            x,y = column * 20, row * 20
+            if walls_left[row][column]:
+                pygame.draw.rect(screen, maze_color, (x,y,3,20))
+            if walls_top[row][column]:
+                pygame.draw.rect(screen, maze_color, (x,y,20,3))
+    pygame.draw.rect(screen, maze_color, (600, 0, 3, 600))
+    pygame.draw.rect(screen, maze_color, (0, 600, 600, 3))
+
+    pygame.display.update()
+
+    pygame.time.delay(0)
