@@ -24,7 +24,7 @@ columns = 30
 rendered_walls_left = []
 rendered_walls_top = []
 
-with open("maze.json", "r") as f:
+with open("../mazes/maze.json", "r") as f:
     raw_unloaded_data = json.load(f)
     rendered_walls_left = raw_unloaded_data["left_walls"]
     rendered_walls_top = raw_unloaded_data["top_walls"]

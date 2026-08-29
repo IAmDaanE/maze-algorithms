@@ -125,7 +125,7 @@ while running:
     
     if not data_dumped and complete:
         save_data = {"left_walls": walls_left, "top_walls": walls_top}
-        with open("maze.json", "w") as f:
+        with open("../mazes/maze.json", "w") as f:
             json.dump(save_data, f)
         data_dumped = True
 
