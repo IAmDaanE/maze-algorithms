@@ -2,6 +2,10 @@
 
 Algorithms to generate mazes and to find the shortest solution to them. Written in python and visualized with pygame.
 
+---
+
+<img width="901" height="901" alt="image" src="https://github.com/user-attachments/assets/3ebacca4-81b3-4775-acba-acf614ef0194" />
+
 ## About the Project
 
 To create the maze there is a recursive backtracker and to find a solution there is a wall follower and dead end fillings algorithm. The recursive backtracker saves the maze as a json file and this file is loaded in by the other two. Mazes are stored as pure lists with booleans, for each cell in there is a boolean for wether or not there is a wall above the cell and wether or not there is one left of it. For each file there is two versions: a normal and a big one. The normal one is a maze of 30 by 30 cells, the big one 100 by 100. 
@@ -12,7 +16,7 @@ I also use the recursive backtracker for [my maze rendering project](https://git
 
 #### Recursive Backtracker
 
-Starts in the corner and keeps going in random directions to cells that haven't been visited yet. It 'breaks' the walls where it passes. If it's closed in, meaning all cells around it have already been visited he will backtrack on his steps until there is another unvisited cell. This continues until all cells have been visited.
+Starts in the corner and keeps going in random directions to cells that haven't been visited yet. It 'breaks' the walls where it passes. If it's closed in, meaning all cells around it have already been visited, he will backtrack on his steps until there is another unvisited cell. This continues until all cells have been visited.
 
 #### Wall Follower
 
