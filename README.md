@@ -28,10 +28,6 @@ Simplest maze solving algorithm out there, its like you walk in a maze and keep 
 
 Builds up by filling all dead ends. It starts by checking all cells and marking the ones that have 3 walls around it and one opening, this means its a dead end. Then it checks the cells around these marked ones to see if it just created a new dead end. This continues until only one pathway from the start to the exit is remaining.
 
-## Project Status
-
-Describe the current release and any notes about the current state of the project. Examples: currently compiles on your host machine, but is not cross-compiling for ARM, APIs are not set, feature not implemented, etc.
-
 ## Getting Started
 
 ### Getting the Source
