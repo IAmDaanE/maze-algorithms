@@ -1,10 +1,12 @@
 # Maze Algorithms
 
 Algorithms to generate mazes and to find the shortest solution to them. Written in python and visualized with pygame.
-*recursive backtracker*
+
 ---
 
 <img width="901" height="901" alt="image" src="https://github.com/user-attachments/assets/3ebacca4-81b3-4775-acba-acf614ef0194" />
+
+*recursive backtracker*
 
 ## About the Project
 
