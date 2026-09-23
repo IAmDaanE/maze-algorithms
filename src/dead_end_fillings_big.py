@@ -132,9 +132,9 @@ while running:
         for column in range(100):
             x,y = column * 6, row * 6
             if rendered_walls_left[row][column]:
-                pygame.draw.rect(screen, maze_color, (x,y,1,6))
+                pygame.draw.rect(screen, maze_color, (x,y,1,7))
             if rendered_walls_top[row][column]:
-                pygame.draw.rect(screen, maze_color, (x,y,6,1))
+                pygame.draw.rect(screen, maze_color, (x,y,7,1))
     pygame.draw.rect(screen, maze_color, (600, 0, 1, 600))
     pygame.draw.rect(screen, maze_color, (0, 600, 600, 1))
 
