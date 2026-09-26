@@ -6,7 +6,7 @@ Algorithms to generate mazes and to find the shortest solution to them. Written 
 
 <img width="901" height="901" alt="image" src="https://github.com/user-attachments/assets/3ebacca4-81b3-4775-acba-acf614ef0194" />
 
-*recursive backtracker*
+*recursive backtracker creating a maze*
 
 ## About the Project
 
