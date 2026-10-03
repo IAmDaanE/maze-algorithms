@@ -11,8 +11,7 @@ Algorithms to generate mazes and to find the shortest solution to them. Written 
 ## About the Project
 
 To create the maze there is a recursive backtracker and to find a solution there is a wall follower and dead end fillings algorithm. The recursive backtracker saves the maze as a json file and this file is loaded in by the other two. Mazes are stored as pure lists with booleans, for each cell in there is a boolean for wether or not there is a wall above the cell and wether or not there is one left of it. For each file there is two versions: a normal and a big one. The normal one is a maze of 30 by 30 cells, the big one 100 by 100. 
-
-I also use the recursive backtracker to generate mazes for [my 3d maze rendering project](https://github.com/IAmDaanE/3d-maze-renderer), it takes that maze and shows it in 3d space so you can walk around in it.
+The recursive backgracker is used to generate mazes for [my 3d maze rendering project](https://github.com/IAmDaanE/3d-maze-renderer), it takes that maze and shows it in 3d space so you can walk around in it.
 
 ## The Algorithms
 
